@@ -50,6 +50,9 @@ struct ContentView: View {
 }
 ```
 
+## Screenshot
+<img src="https://github.com/rws08/SDImageSVGWKWebCoder/assets/7792240/cb41e4b9-23fd-4f1f-ad05-339cc9d7ce6b" width="40%"/>
+
 ## Acknowledgements
 
 This library is inspired by the [SVGWebView](https://github.com/ZeeZide/SVGWebView) library.
