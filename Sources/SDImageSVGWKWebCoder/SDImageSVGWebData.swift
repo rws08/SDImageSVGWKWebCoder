@@ -19,7 +19,6 @@ class SDImageSVGWebData: NSObject, WKNavigationDelegate {
     private var image: UIImage?
     private var semaphore: DispatchSemaphore?
     private var svgWebView: WKWebView?
-    private var timer: Timer?
     
     var data: Data
     var backgroundColor: Color?
@@ -33,12 +32,8 @@ class SDImageSVGWebData: NSObject, WKNavigationDelegate {
     
     public func getImage() -> UIImage? {
         semaphore = DispatchSemaphore(value: 0)
-        timer = Timer.scheduledTimer(withTimeInterval: kTimeout, repeats: false) { _ in
-            self.semaphore?.signal()
-        }
         renderSVGToWebView()
-        semaphore?.wait()
-        timer?.invalidate()
+        _ = semaphore?.wait(timeout: .now() + kTimeout)
         removeRender()
         
         return image
